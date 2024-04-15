@@ -1,0 +1,84 @@
+get http://localhost:3000
+
+# ###
+# get http://localhost:3000/portfolio
+# Content-Type : application/json
+
+###
+get http://localhost:3000/portfolio/presentation
+Content-Type : application/json
+
+###
+get http://localhost:3000/portfolio/projets
+Content-Type : application/json
+
+###
+get http://localhost:3000/portfolio/projets/projet1
+Content-Type : application/json
+
+###
+get http://localhost:3000/portfolio/contact
+Content-Type : application/json
+
+###
+POST http://localhost:3000/portfolio/contact
+Content-Type : application/json
+
+{
+    "mail": "moi@monmail",
+    "objet": "Question",
+    "message": "lipsum lorem"
+}
+
+###
+get http://localhost:3000/portfolio/connexion
+Content-Type : application/json
+
+###
+get http://localhost:3000/admin
+Content-Type : application/json
+
+###
+get http://localhost:3000/admin/editpresentation
+Content-Type : application/json
+
+###
+POST http://localhost:3000/admin/editpresentation
+Content-Type : application/json
+
+{
+    "image": "image",
+    "bio": "bio", 
+    "competences": "competences", 
+    "experiences": "experiences"
+}
+
+###
+get http://localhost:3000/admin/editprojet/:id
+Content-Type : application/json
+
+###
+get http://localhost:3000/admin/analyses
+Content-Type : application/json
+
+###
+POST http://localhost:3000/admin/editprojet/Projet221
+Content-Type : application/json
+
+{
+    "descriptionIntro": "texte",
+    "descriptionComplete": "texte",
+    "motsCles": "[mots cles]",
+    "imageThumbnail": "image",
+    "images": "[images]",
+    "date": "date"
+}
+
+###
+POST http://localhost:3000/admin/connexion
+Content-Type : application/json
+
+{
+    "id": "admin",
+    "mdp": "adminadmin"
+}
