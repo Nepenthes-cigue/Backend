@@ -11,9 +11,9 @@ server.use(express.json());
 server.use('/portfolio',routerPortfolio());
 server.use('/admin',routerAdmin());
 
-server.get('/', (req,res)=>{
-  res.send('hello world');
-});
+// server.get('/', (req,res)=>{
+//   res.send('hello world');
+// });
 
 server.listen (PORT, ()=>{
   console.log(`Serveur listening on port:${PORT}`);

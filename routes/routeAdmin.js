@@ -8,14 +8,14 @@ module.exports = function routerAdmin() {
   });
 
   router.post('/connexion',(req,res)=>{
-    const {id, mdp} = req.body;
+    const {identifiant, mdp} = req.body;
   
     try {
-      console.log(`id: ${id} - mdp: ${mdp}`);	
-      res.status(200).json({'status': 'OK','content': `${id} ${mdp}`});
+      console.log(`identifiant: ${identifiant} - mdp: ${mdp}`);	
+      res.status(200).json({'status': 'OK','content': `${identifiant} ${mdp}`});
     }
     catch (err) {
-      res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${id} ${mdp}` });
+      res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${identifiant} ${mdp}` });
     }
   });
 
@@ -37,8 +37,8 @@ module.exports = function routerAdmin() {
 
   router.route('/editprojet/:titre')
     .get((req,res)=>{
-      const { id } = req.params;  
-      res.json(`Page edition du projet ${id}`);
+      const { titre } = req.params;  
+      res.json(`Page edition du projet ${titre}`);
     })
     .post((req,res)=>{
       const { titre } = req.params;
@@ -50,6 +50,16 @@ module.exports = function routerAdmin() {
       }
       catch (err) {
         res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${titre} ${descriptionIntro} ${descriptionComplete} ${motsCles} ${imageThumbnail} ${images} ${date}` });
+      }
+    })
+    .delete((req,res)=>{
+      const { titre } = req.params;
+      try {
+        console.log(`Titre: ${titre}`);	
+        res.status(200).json({'status': 'OK','content':`Suppression du projet ${titre}`});
+      }
+      catch (err) {
+        res.status(408).json({ 'status': 'ALREADY_EXIST', 'content':` ${titre}`});
       }
     });
 

@@ -75,6 +75,19 @@ Content-Type : application/json
 }
 
 ###
+DELETE http://localhost:3000/admin/editprojet/Projet221
+Content-Type : application/json
+
+{
+    "descriptionIntro": "texte",
+    "descriptionComplete": "texte",
+    "motsCles": "[mots cles]",
+    "imageThumbnail": "image",
+    "images": "[images]",
+    "date": "date"
+}
+
+###
 POST http://localhost:3000/admin/connexion
 Content-Type : application/json
 
