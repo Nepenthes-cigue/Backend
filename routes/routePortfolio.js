@@ -1,18 +1,25 @@
 const express = require('express');
 
+const projet = require('../model/modelProjet').projet;
+
 //Une route pour lister les contents, en avoir 1, en créer, en supprimer 1, en modifier 1
 
 module.exports = function routerContent(){
   const router = express();
 
-  router.get('/presentation', (req,res)=>{
-    res.json({'message':'Presentation'});
+  // router.get('/presentation', services.servicesPresentation);
+  // router.get('/presentation', (req,res)=>{
+  //   res.json({'message':'presentation'});
+  // });
+
+  // router.get('/projets', service.servicesProjet);
+  router.get('/projets', async function (req,res) {
+    const projets = await projet.find({});
+    console.log(projets);
+    res.status(200).json(projets);
   });
 
-  router.get('/projets', (req,res)=>{
-    res.json({'message':'Liste des projets'});
-  });
-
+  // router.get('/projets/:id', service.servicesProjetID);
   router.get('/projets/:id', (req,res)=>{
     const {id}=req.params;
     res.json({'message':`Projet : ${id}`});
@@ -34,9 +41,9 @@ module.exports = function routerContent(){
       }
     });
 
-  router.get('/connexion',(req,res)=>{
-    res.json({'message':'Page de connexion'});
-  });
+  // router.get('/connexion',(req,res)=>{
+  //   res.json({'message':'Page de connexion'});
+  // });
 
   return router;
 };

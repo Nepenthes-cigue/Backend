@@ -40,6 +40,7 @@ module.exports = function routerAdmin() {
       const { titre } = req.params;  
       res.json(`Page edition du projet ${titre}`);
     })
+
     .post((req,res)=>{
       const { titre } = req.params;
       const { descriptionIntro, descriptionComplete, motsCles, imageThumbnail, images, date} = req.body;
@@ -52,6 +53,7 @@ module.exports = function routerAdmin() {
         res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${titre} ${descriptionIntro} ${descriptionComplete} ${motsCles} ${imageThumbnail} ${images} ${date}` });
       }
     })
+
     .delete((req,res)=>{
       const { titre } = req.params;
       try {
