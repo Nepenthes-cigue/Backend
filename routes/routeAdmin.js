@@ -4,7 +4,7 @@ module.exports = function routerAdmin() {
   const router = express();
 
   router.get('/', (req, res) => {
-    res.json({ 'message': 'page admin' });
+    res.json({ 'message': 'page admin et analyses' });
   });
 
   router.post('/connexion',(req,res)=>{
@@ -64,15 +64,6 @@ module.exports = function routerAdmin() {
         res.status(408).json({ 'status': 'ALREADY_EXIST', 'content':` ${titre}`});
       }
     });
-
-  router.get('/analyses', (req, res) => {
-    res.json({ 'message': 'analyses' });
-  });
-
-  //   router.get('/:id', (req, res) => {
-  //     const { id } = req.params;
-  //     res.json({ 'message': `user : ${id}` });
-  //   });
 
   return router;
 };
