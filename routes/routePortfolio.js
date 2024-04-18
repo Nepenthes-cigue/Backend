@@ -1,16 +1,9 @@
 const express = require('express');
 
-const projet = require('../model/modelProjet').projet;
-const presentation = require('../model/modelPresentation').presentation;
+const projet = require('../models/modelProjet').projet;
 
 module.exports = function routerContent(){
   const router = express();
-
-  router.get('/presentation', async function (req,res) {
-    const maPresentation = await presentation.find({});
-    console.log(maPresentation);
-    res.status(200).json({maPresentation});
-  });
 
   router.get('/projets', async function (req,res) {
     const mesProjets = await projet.find({});
@@ -19,8 +12,8 @@ module.exports = function routerContent(){
   });
 
   router.get('/projets/:id', async function (req,res) {
-    const titre = req.params.titre;
-    const unProjet = await projet.findOne({titre: titre});
+    const id = req.params.id;
+    const unProjet = await projet.findOne({id: id});
     res.status(200).json(unProjet);
   });
 
