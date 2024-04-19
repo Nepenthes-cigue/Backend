@@ -1,66 +1,93 @@
 const express = require('express');
+const admin = require('../models/modelAdmin').admin;
+const projet = require('../models/modelProjet').projet;
 
 module.exports = function routerAdmin() {
   const router = express();
 
   router.get('/', (req, res) => {
-    res.json({ 'message': 'page admin' });
+    //WIP - Authentification
+    //WIP - Analytics
+    res.status(200).json('page Admin');
   });
 
   router.post('/connexion',(req,res)=>{
-    const {id, mdp} = req.body;
+    const {identifiant, mdp} = req.body;
   
     try {
-      console.log(`id: ${id} - mdp: ${mdp}`);	
-      res.status(200).json({'status': 'OK','content': `${id} ${mdp}`});
+      console.log(`identifiant: ${identifiant} - mdp: ${mdp}`);	
+      res.status(200).json({'status': 'OK','content': `${identifiant} ${mdp}`});
     }
     catch (err) {
-      res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${id} ${mdp}` });
+      res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${identifiant} ${mdp}` });
     }
   });
 
-  router.route('/editpresentation')
-    .get((req,res)=>{
-      res.json('Page edition presentation');
-    })
-    .post((req,res)=>{
-      const {image, bio, competences, experiences} = req.body;
-
-      try {
-        console.log(`Image: ${image} - Bio: ${bio} - Competences: ${competences} - Experiences: ${experiences}`);
-        res.status(200).json({ 'status': 'OK', 'content': `${image} ${bio} ${competences} ${experiences}`});
-      }
-      catch (err) {
-        res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${image} ${bio} ${competences} ${experiences}` });
-      }
-    });
-
-  router.route('/editprojet/:titre')
-    .get((req,res)=>{
-      const { id } = req.params;  
-      res.json(`Page edition du projet ${id}`);
-    })
-    .post((req,res)=>{
-      const { titre } = req.params;
-      const { descriptionIntro, descriptionComplete, motsCles, imageThumbnail, images, date} = req.body;
-
-      try {
-        console.log(`Titre: ${titre} - Description Intro: ${descriptionIntro} - Description Complete: ${descriptionComplete} - Mots Cles: ${motsCles} - Image Presentation: ${imageThumbnail} - Images: ${images} - Date: ${date}`);	
-        res.status(200).json({'status': 'OK','content': `${titre} ${descriptionIntro} ${descriptionComplete} ${motsCles} ${imageThumbnail} ${images} ${date}`});
-      }
-      catch (err) {
-        res.status(408).json({ 'status': 'ALREADY_EXIST', 'content': `${titre} ${descriptionIntro} ${descriptionComplete} ${motsCles} ${imageThumbnail} ${images} ${date}` });
-      }
-    });
-
-  router.get('/analyses', (req, res) => {
-    res.json({ 'message': 'analyses' });
+  router.post('/projet', async function (req,res) {
+    try {
+      let projet = {
+        id : req.params.id,
+        titre: req.body.titre,
+        descriptionIntro: req.body.descriptionIntro,
+        descriptionComplete: req.body.descriptionComplete,
+        motCle: req.body.motCle,
+        imageTh: req.body.imageTh,
+        images: req.body.images,
+        date: req.body.date
+      };
+      let monProjet = await projet.create(projet);
+      console.log(monProjet);	
+      res.status(200).json(monProjet);
+    }
+    catch (error) {
+      res.status(408).json({message : error.message});
+    }
   });
 
-  //   router.get('/:id', (req, res) => {
-  //     const { id } = req.params;
-  //     res.json({ 'message': `user : ${id}` });
-  //   });
+  router.route('/projet/:id')
+    .put(async function (req,res) {
+      try {
+        let projet = {
+          id : req.params.id,
+          titre: req.body.titre,
+          descriptionIntro: req.body.descriptionIntro,
+          descriptionComplete: req.body.descriptionComplete,
+          motCle: req.body.motCle,
+          imageTh: req.body.imageTh,
+          images: req.body.images,
+          date: req.body.date
+        };
+        let monProjet = await projet.updateOne(projet);
+        console.log(monProjet);	
+        res.status(200).json(monProjet);
+      }
+      catch (error) {
+        res.status(408).json({message : error.message});
+      }
+
+    })
+
+    .delete(async function (req,res) {
+      try {
+        let projet = {
+          id : req.params.id,
+          titre: req.body.titre,
+          descriptionIntro: req.body.descriptionIntro,
+          descriptionComplete: req.body.descriptionComplete,
+          motCle: req.body.motCle,
+          imageTh: req.body.imageTh,
+          images: req.body.images,
+          date: req.body.date
+        };
+        let monProjet = await projet.deleteOne(projet);
+        console.log(monProjet);	
+        res.status(200).json(monProjet);
+      }
+      catch (error) {
+        res.status(408).json({message : error.message});
+      }
+
+    });
 
   return router;
 };

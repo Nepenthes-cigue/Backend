@@ -21,16 +21,6 @@ get http://localhost:3000/portfolio/contact
 Content-Type : application/json
 
 ###
-POST http://localhost:3000/portfolio/contact
-Content-Type : application/json
-
-{
-    "mail": "moi@monmail",
-    "objet": "Question",
-    "message": "lipsum lorem"
-}
-
-###
 get http://localhost:3000/portfolio/connexion
 Content-Type : application/json
 
@@ -39,22 +29,7 @@ get http://localhost:3000/admin
 Content-Type : application/json
 
 ###
-get http://localhost:3000/admin/editpresentation
-Content-Type : application/json
-
-###
-POST http://localhost:3000/admin/editpresentation
-Content-Type : application/json
-
-{
-    "image": "image",
-    "bio": "bio", 
-    "competences": "competences", 
-    "experiences": "experiences"
-}
-
-###
-get http://localhost:3000/admin/editprojet/:id
+get http://localhost:3000/admin/projet/:id
 Content-Type : application/json
 
 ###
@@ -62,7 +37,22 @@ get http://localhost:3000/admin/analyses
 Content-Type : application/json
 
 ###
-POST http://localhost:3000/admin/editprojet/Projet221
+POST http://localhost:3000/admin/projet
+Content-Type : application/json
+
+{
+    "id":"1",
+    "titre": "titre",
+    "descriptionIntro": "texte",
+    "descriptionComplete": "texte",
+    "motsCles": "[mots cles]",
+    "imageTh": "image",
+    "images": "[images]",
+    "date": "date"
+}
+
+###
+DELETE http://localhost:3000/admin/projet/Projet221
 Content-Type : application/json
 
 {

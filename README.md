@@ -1,22 +1,15 @@
-CRUD - Create, Read, Update, Delete
+# Mettre en place le projet 
+Faire pnpm install
 
-- Content
-- User CRUD de son propre profil
-    - Admin CRUD Content et CRUD User
-    - Editeur CRUD Content
-    - Lecteur R Content
-
-- **Route Content** : Creer, modif, suppr, lister
-- **Route User** : Creer, modif, suppr, lister
-
-Middleware
-Gestionnaire de route pour les contents
-Gestionnaire de route pour les users
+Créer un fichier .env.development.local
+PORT=NumeroAuChoix
+BDD="mongodb://localhost:PORT2"
 
 
 # Lancer le serveur
-Dans cmd : node app.js
 Dans navigateur : mettre l'url (http://localhost:PORT)
 
 Dans cmd : pnpm run dev
+
+Utiliser mongoDB compass
 Dans .http cliquer sur lancer la requête
